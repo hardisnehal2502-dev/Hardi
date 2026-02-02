@@ -1,0 +1,181 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank You Anjal 💙</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #1d2671, #c33764);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }.card {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(12px);
+  border-radius: 22px;
+  padding: 28px 22px;
+  width: 92%;
+  max-width: 420px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+  animation: fadeIn 1s ease;
+}
+
+h1 {
+  margin-top: 0;
+  color: #ffd369;
+}
+
+p {
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+.btn {
+  margin: 10px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  background: #ffd369;
+  color: #000;
+  transition: transform 0.2s;
+}
+
+.btn:hover { transform: scale(1.08); }
+
+.hidden { display: none; }
+
+.question {
+  font-size: 1.1rem;
+  margin: 18px 0;
+}
+
+.envelope {
+  width: 200px;
+  height: 120px;
+  background: #ff6f61;
+  margin: 20px auto;
+  position: relative;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.envelope::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 100px solid transparent;
+  border-right: 100px solid transparent;
+  border-top: 60px solid #ff8a75;
+}
+
+.message {
+  background: #fff;
+  color: #222;
+  padding: 18px;
+  border-radius: 14px;
+  margin-top: 18px;
+  animation: pop 0.6s ease;
+}
+
+.confetti {
+  position: fixed;
+  width: 8px;
+  height: 14px;
+  top: -20px;
+  animation: fall linear forwards;
+  z-index: 0;
+}
+
+@keyframes fall {
+  to { transform: translateY(110vh) rotate(720deg); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pop {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+
+  </style>
+</head>
+<body>  <audio id="music" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/10/16/audio_92a84b98d8.mp3?filename=inspiring-cinematic-116199.mp3" type="audio/mpeg">
+  </audio>  <div class="card">
+    <h1>Hey Anjal 💪🍻</h1>
+    <p id="intro">Time for some fun questions before the message…</p><div id="quiz">
+  <div class="question" id="question"></div>
+  <button class="btn" onclick="answer()">Obviously YES 😎</button>
+</div>
+
+<div id="final" class="hidden">
+  <div class="envelope" onclick="openMessage()"></div>
+  <p><small>Tap the envelope 💌</small></p>
+
+  <div id="message" class="hidden message">
+    <h3>For You, My Friend</h3>
+    <p>
+      Anjal, mero jindagi ko sabai garo samay ma saath diyeko ma dhanyabaad.<br>
+      Timi jasto sacho ra majboot saathi paunu ma lucky chu.<br>
+      Yo dosti sadhai yesari nai rahos. 🤍
+    </p>
+    <strong>– Hardi 💙</strong>
+  </div>
+</div>
+
+  </div>  <script>
+    const questions = [
+      `Gym जाँदा mirror हेरेर pose नगरी रहन सक्दैनौ, Hardi भन्छ 😏`,
+      `Rest day भनेको के हो थाहा छैन तिमीलाई, Hardi ले पनि हैरानी 😅`,
+      `Protein shake भन्दा पहिले gym selfie अनिवार्य हो, Hardi ले test गरेको छ 📸`,
+      `Alcohol = cheat day होइन, lifestyle हो भन्ने मान्छे तिमी नै हौ, Hardi लाई थाहा छ 🍻`,
+      `One drink only भनेको joke हो, Hardi संग agree गर्ने? 😌`
+    ];
+
+    let index = 0;
+    const qEl = document.getElementById('question');
+    qEl.innerText = questions[index];
+
+    function answer() {
+      index++;
+      if (index < questions.length) {
+        qEl.innerText = questions[index];
+      } else {
+        document.getElementById('quiz').style.display = 'none';
+        document.getElementById('final').classList.remove('hidden');
+        document.getElementById('music').play();
+      }
+    }
+
+    function openMessage() {
+      document.getElementById('message').classList.remove('hidden');
+      launchConfetti();
+    }
+
+    function launchConfetti() {
+      for (let i = 0; i < 80; i++) {
+        const c = document.createElement('div');
+        c.className = 'confetti';
+        c.style.left = Math.random() * 100 + 'vw';
+        c.style.background = `hsl(${Math.random()*360},100%,60%)`;
+        c.style.animationDuration = (Math.random()*2 + 2) + 's';
+        document.body.appendChild(c);
+        setTimeout(() => c.remove(), 4500);
+      }
+    }
+  </script></body>
+</html>
